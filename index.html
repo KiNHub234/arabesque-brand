@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARABESQUE Ballet Company — Ksiega Znaku</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+    background: #fafaf8;
+    color: #1a1a1a;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  /* ─── COVER ─── */
+  .cover {
+    height: 100vh;
+    background: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(212, 168, 83, 0.08);
+    border-radius: 50%;
+  }
+  .cover-logo {
+    width: 280px;
+    height: 280px;
+    margin-bottom: 60px;
+    filter: drop-shadow(0 0 40px rgba(212, 168, 83, 0.15));
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', 'Didot', 'Bodoni MT', Georgia, serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    color: #c2a66e;
+    margin-bottom: 8px;
+  }
+  .cover h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: rgba(194, 166, 110, 0.5);
+  }
+  .cover-line {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #c2a66e, transparent);
+    margin: 30px 0;
+  }
+  .cover-year {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: rgba(194, 166, 110, 0.3);
+    margin-top: 40px;
+  }
+
+  /* ─── PAGES ─── */
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 100px 60px;
+    page-break-after: always;
+  }
+  .page-dark {
+    background: #0a0a0a;
+    max-width: 100%;
+    padding: 100px calc((100% - 780px) / 2);
+  }
+  .page-accent {
+    background: #f5f0e8;
+  }
+
+  /* ─── SECTION HEADERS ─── */
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 400;
+    color: rgba(212, 168, 83, 0.15);
+    line-height: 1;
+    margin-bottom: -10px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+  }
+  .section-subtitle {
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #c2a66e;
+    margin-bottom: 50px;
+  }
+  .page-dark .section-title { color: #e8d08a; }
+  .page-dark .section-subtitle { color: rgba(194, 166, 110, 0.6); }
+  .page-dark p, .page-dark li { color: rgba(255,255,255,0.7); }
+
+  /* ─── DIVIDERS ─── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 60px 0;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #d4a853, transparent);
+    opacity: 0.3;
+  }
+  .divider-diamond {
+    width: 8px;
+    height: 8px;
+    background: #d4a853;
+    transform: rotate(45deg);
+    opacity: 0.5;
+  }
+
+  /* ─── TEXT ─── */
+  p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #444;
+  }
+  .lead {
+    font-size: 16px;
+    color: #333;
+    font-weight: 300;
+    line-height: 1.9;
+  }
+
+  /* ─── LOGO DISPLAY ─── */
+  .logo-showcase {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 50px 0;
+  }
+  .logo-box {
+    width: 280px;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    position: relative;
+  }
+  .logo-box img, .logo-box object {
+    width: 220px;
+    height: 220px;
+  }
+  .logo-box-dark { background: #0a0a0a; }
+  .logo-box-light { background: #ffffff; border: 1px solid #e0e0e0; }
+  .logo-box-gold { background: #f5f0e8; }
+  .logo-label {
+    position: absolute;
+    bottom: -28px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #999;
+  }
+
+  /* ─── COLOR PALETTE ─── */
+  .colors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    margin: 40px 0;
+  }
+  .color-card {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .color-swatch {
+    height: 120px;
+  }
+  .color-info {
+    padding: 16px;
+    background: white;
+  }
+  .color-name {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #1a1a1a;
+  }
+  .color-value {
+    font-size: 11px;
+    color: #888;
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+  }
+
+  /* ─── TYPOGRAPHY ─── */
+  .type-specimen {
+    margin: 40px 0;
+    padding: 40px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+  .type-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #c2a66e;
+    margin-bottom: 16px;
+  }
+  .type-primary {
+    font-family: 'Playfair Display', 'Didot', 'Bodoni MT', Georgia, serif;
+    font-size: 48px;
+    font-weight: 400;
+    color: #1a1a1a;
+    letter-spacing: 8px;
+    margin-bottom: 12px;
+  }
+  .type-secondary {
+    font-family: 'Montserrat', 'Futura', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .type-alphabet {
+    font-size: 20px;
+    color: #555;
+    margin-top: 20px;
+    line-height: 2;
+  }
+
+  /* ─── SPACING / SAFE ZONE ─── */
+  .safe-zone-demo {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+  }
+  .safe-zone-box {
+    width: 340px;
+    height: 340px;
+    background: #0a0a0a;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .safe-zone-box img {
+    width: 200px;
+    height: 200px;
+  }
+  .safe-zone-border {
+    position: absolute;
+    border: 1px dashed rgba(212, 168, 83, 0.4);
+  }
+  .safe-zone-outer {
+    top: 30px; left: 30px; right: 30px; bottom: 30px;
+  }
+  .safe-zone-label {
+    position: absolute;
+    font-size: 9px;
+    color: #c2a66e;
+    letter-spacing: 2px;
+  }
+  .safe-zone-label-top { top: 12px; left: 50%; transform: translateX(-50%); }
+  .safe-zone-label-side { right: -60px; top: 50%; transform: rotate(90deg) translateX(-50%); }
+
+  /* ─── INCORRECT USE ─── */
+  .dont-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 40px 0;
+  }
+  .dont-card {
+    text-align: center;
+  }
+  .dont-box {
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .dont-box::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #c0392b;
+    border-radius: 50%;
+    background: rgba(192, 57, 43, 0.1);
+  }
+  .dont-box::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    right: 14px;
+    width: 16px;
+    height: 2px;
+    background: #c0392b;
+    transform: rotate(45deg);
+    z-index: 1;
+  }
+  .dont-box img { width: 60%; height: 60%; }
+  .dont-label {
+    font-size: 11px;
+    color: #888;
+  }
+
+  /* ─── MIN SIZE ─── */
+  .min-sizes {
+    display: flex;
+    align-items: flex-end;
+    gap: 50px;
+    justify-content: center;
+    margin: 50px 0;
+  }
+  .min-size-item {
+    text-align: center;
+  }
+  .min-size-item img {
+    display: block;
+    margin: 0 auto 12px;
+  }
+  .min-size-label {
+    font-size: 11px;
+    color: #888;
+  }
+
+  /* ─── TABLE ─── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+  }
+  th {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #c2a66e;
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid #e8d08a;
+    font-weight: 500;
+  }
+  td {
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #555;
+    border-bottom: 1px solid #eee;
+  }
+
+  /* ─── FOOTER ─── */
+  .page-footer {
+    text-align: center;
+    padding: 60px;
+    background: #0a0a0a;
+    color: rgba(194, 166, 110, 0.4);
+    font-size: 11px;
+    letter-spacing: 4px;
+  }
+
+  /* ─── PRINT ─── */
+  @media print {
+    .cover { height: auto; padding: 200px 0; }
+    .page { padding: 60px 40px; }
+    .page-dark { background: #0a0a0a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- COVER -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="cover">
+  <img src="arabesque_ballet_logo.svg" class="cover-logo" alt="Arabesque Logo">
+  <div class="cover-line"></div>
+  <h1>Ksiega Znaku</h1>
+  <h2>Brand Guidelines</h2>
+  <div class="cover-year">2026</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 01 — INTRODUCTION -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-num">01</div>
+  <div class="section-title">Wprowadzenie</div>
+  <div class="section-subtitle">Introduction</div>
+
+  <p class="lead">
+    Niniejsza ksiega znaku stanowi kompletny przewodnik po identyfikacji wizualnej
+    marki <strong>ARABESQUE Ballet Company</strong>. Dokument okresla zasady
+    stosowania logo, palety kolorow, typografii oraz elementow graficznych.
+  </p>
+  <p>
+    Konsekwentne stosowanie tych zasad gwarantuje spojnosc wizerunku marki
+    we wszystkich kanalach komunikacji — od materialow drukowanych, przez
+    media spolecznosciowe, po scenografie i stroje.
+  </p>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-diamond"></div>
+    <div class="divider-line"></div>
+  </div>
+
+  <p class="lead">
+    Marka ARABESQUE czerpie inspiracje z klasycznego baletu — elegancji,
+    precyzji i gracli. Zlota paleta kolorow nawiazuje do luksusu
+    i tradycji, a sylwetka baleriny w pozie arabesque symbolizuje doskonalosc
+    artystyczna.
+  </p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 02 — LOGO -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="page page-dark">
+  <div class="section-num" style="color: rgba(212,168,83,0.1);">02</div>
+  <div class="section-title">Logo</div>
+  <div class="section-subtitle">Primary Mark</div>
+
+  <p>
+    Logo ARABESQUE sklada sie z trzech elementow: sylwetki baleriny w pozie
+    arabesque, nazwy firmy w typografii szeryfowej oraz podtytulu w typografii
+    bezszeryfowej. Elementy te tworza spojny znak, ktory nie powinien byc
+    rozdzielany ani modyfikowany.
+  </p>
+
+  <div class="logo-showcase">
+    <div class="logo-box logo-box-dark" style="box-shadow: 0 4px 30px rgba(0,0,0,0.5);">
+      <img src="arabesque_ballet_logo.svg" alt="Logo na ciemnym tle">
+      <div class="logo-label" style="color: rgba(194,166,110,0.5);">Na ciemnym tle (podstawowe)</div>
+    </div>
+  </div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-diamond"></div>
+    <div class="divider-line"></div>
+  </div>
+
+  <h3 style="color: #e8d08a; font-family: 'Playfair Display', serif; font-weight: 400; font-size: 20px; margin-bottom: 20px;">Elementy znaku</h3>
+
+  <table>
+    <tr>
+      <th>Element</th>
+      <th>Opis</th>
+    </tr>
+    <tr>
+      <td style="color:#e8d08a;">Sylwetka baleriny</td>
+      <td>Realistyczna sylwetka tancerki w klasycznej pozie. Zloty gradient.</td>
+    </tr>
+    <tr>
+      <td style="color:#e8d08a;">Linia dekoracyjna + diament</td>
+      <td>Separator pomiedzy grafika a typografia. Ksztalt diamentu jako akcent.</td>
+    </tr>
+    <tr>
+      <td style="color:#e8d08a;">ARABESQUE</td>
+      <td>Nazwa firmy. Typografia szeryfowa, tracking 18px, zloty gradient.</td>
+    </tr>
+    <tr>
+      <td style="color:#e8d08a;">BALLET COMPANY</td>
+      <td>Podtytul. Typografia bezszeryfowa, tracking 14px, zloto 75% opacity.</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 03 — SAFE ZONE -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-num">03</div>
+  <div class="section-title">Pole ochronne</div>
+  <div class="section-subtitle">Safe Zone &amp; Minimum Size</div>
+
+  <p>
+    Wokol logo nalezy zachowac pole ochronne rowne minimum <strong>10% szerokosci znaku</strong>
+    z kazdej strony. Zadne inne elementy graficzne, tekst ani krawedzie nie powinny
+    naruszac tej strefy.
+  </p>
+
+  <div class="safe-zone-demo">
+    <div class="safe-zone-box">
+      <img src="arabesque_ballet_logo.svg" alt="Safe zone">
+      <div class="safe-zone-border safe-zone-outer"></div>
+      <span class="safe-zone-label safe-zone-label-top">10% X</span>
+    </div>
+  </div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-diamond"></div>
+    <div class="divider-line"></div>
+  </div>
+
+  <h3 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 20px; margin-bottom: 20px;">Minimalne wymiary</h3>
+  <p>
+    Logo nie powinno byc stosowane w rozmiarze mniejszym niz podane ponizej wartosci,
+    aby zachowac czytelnosc wszystkich elementow.
+  </p>
+
+  <table>
+    <tr><th>Medium</th><th>Minimalna szerokosc</th></tr>
+    <tr><td>Druk</td><td>30 mm</td></tr>
+    <tr><td>Ekran / digital</td><td>120 px</td></tr>
+    <tr><td>Favicon / ikona</td><td>Uzyc samej sylwetki baleriny (bez tekstu)</td></tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 04 — COLORS -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="page page-accent">
+  <div class="section-num">04</div>
+  <div class="section-title">Paleta kolorow</div>
+  <div class="section-subtitle">Color Palette</div>
+
+  <p class="lead">
+    Paleta marki oparta jest na odcieniach zlota i czerni — klasyczne polaczenie
+    symbolizujace elegancje, luksus i tradycje baletowa.
+  </p>
+
+  <h3 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 18px; margin: 30px 0 16px;">Kolory podstawowe</h3>
+
+  <div class="colors-grid">
+    <div class="color-card">
+      <div class="color-swatch" style="background: #d4a853;"></div>
+      <div class="color-info">
+        <div class="color-name">Gold Primary</div>
+        <div class="color-value">
+          HEX #D4A853<br>
+          RGB 212, 168, 83<br>
+          CMYK 15, 28, 72, 2
+        </div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #c2a66e;"></div>
+      <div class="color-info">
+        <div class="color-name">Gold Medium</div>
+        <div class="color-value">
+          HEX #C2A66E<br>
+          RGB 194, 166, 110<br>
+          CMYK 20, 25, 55, 5
+        </div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #e8d08a;"></div>
+      <div class="color-info">
+        <div class="color-name">Gold Light</div>
+        <div class="color-value">
+          HEX #E8D08A<br>
+          RGB 232, 208, 138<br>
+          CMYK 8, 12, 48, 0
+        </div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #b8944a;"></div>
+      <div class="color-info">
+        <div class="color-name">Gold Dark</div>
+        <div class="color-value">
+          HEX #B8944A<br>
+          RGB 184, 148, 74<br>
+          CMYK 22, 32, 72, 8
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 18px; margin: 30px 0 16px;">Kolory neutralne</h3>
+
+  <div class="colors-grid">
+    <div class="color-card">
+      <div class="color-swatch" style="background: #0a0a0a;"></div>
+      <div class="color-info">
+        <div class="color-name">Black (tlo podstawowe)</div>
+        <div class="color-value">
+          HEX #0A0A0A<br>
+          RGB 10, 10, 10<br>
+          CMYK 0, 0, 0, 98
+        </div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #1a1a1a;"></div>
+      <div class="color-info">
+        <div class="color-name">Dark Gray</div>
+        <div class="color-value">
+          HEX #1A1A1A<br>
+          RGB 26, 26, 26<br>
+          CMYK 0, 0, 0, 92
+        </div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #f5f0e8;"></div>
+      <div class="color-info">
+        <div class="color-name">Warm White</div>
+        <div class="color-value">
+          HEX #F5F0E8<br>
+          RGB 245, 240, 232<br>
+          CMYK 2, 3, 7, 0
+        </div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #ffffff; border: 1px solid #ddd;"></div>
+      <div class="color-info">
+        <div class="color-name">White</div>
+        <div class="color-value">
+          HEX #FFFFFF<br>
+          RGB 255, 255, 255<br>
+          CMYK 0, 0, 0, 0
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-diamond"></div>
+    <div class="divider-line"></div>
+  </div>
+
+  <h3 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 18px; margin-bottom: 16px;">Gradienty</h3>
+  <p>W logo stosowane sa dwa gradienty liniowe:</p>
+  <table>
+    <tr><th>Nazwa</th><th>Kierunek</th><th>Kolory</th><th>Zastosowanie</th></tr>
+    <tr>
+      <td>Gold Gradient</td>
+      <td>Diagonalny (0,0 → 100%,100%)</td>
+      <td>#D4A853 → #C2A66E → #B8944A</td>
+      <td>Sylwetka, elementy dekoracyjne</td>
+    </tr>
+    <tr>
+      <td>Gold Light Gradient</td>
+      <td>Pionowy (gora → dol)</td>
+      <td>#E0C680 → #C2A66E</td>
+      <td>Napis ARABESQUE</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 05 — TYPOGRAPHY -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-num">05</div>
+  <div class="section-title">Typografia</div>
+  <div class="section-subtitle">Typography</div>
+
+  <p class="lead">
+    Marka ARABESQUE korzysta z dwoch rodzin fontow: szeryfowej dla naglowkow
+    i elementow prestiozowych oraz bezszeryfowej dla tekstu uzupelniajacego.
+  </p>
+
+  <div class="type-specimen">
+    <div class="type-label">Font podstawowy — naglowki</div>
+    <div class="type-primary">ARABESQUE</div>
+    <div class="type-alphabet" style="font-family: 'Playfair Display', serif;">
+      A B C D E F G H I J K L M N O P Q R S T U V W X Y Z<br>
+      a b c d e f g h i j k l m n o p q r s t u v w x y z<br>
+      0 1 2 3 4 5 6 7 8 9
+    </div>
+    <p style="margin-top: 16px; font-size: 12px; color: #999;">
+      Playfair Display / Didot / Bodoni MT / Georgia (serif)<br>
+      Regular 400 | Letter-spacing: 18px w logo
+    </p>
+  </div>
+
+  <div class="type-specimen">
+    <div class="type-label">Font uzupelniajacy — podtytuly i tekst</div>
+    <div class="type-secondary">BALLET COMPANY</div>
+    <div class="type-alphabet" style="font-family: 'Montserrat', sans-serif; font-weight: 300;">
+      A B C D E F G H I J K L M N O P Q R S T U V W X Y Z<br>
+      a b c d e f g h i j k l m n o p q r s t u v w x y z<br>
+      0 1 2 3 4 5 6 7 8 9
+    </div>
+    <p style="margin-top: 16px; font-size: 12px; color: #999;">
+      Montserrat / Futura / Helvetica Neue / Arial (sans-serif)<br>
+      Light 300 | Letter-spacing: 14px w logo
+    </p>
+  </div>
+
+  <table>
+    <tr><th>Zastosowanie</th><th>Font</th><th>Waga</th><th>Styl</th></tr>
+    <tr><td>Nazwa firmy w logo</td><td>Playfair Display</td><td>400 Regular</td><td>Uppercase, tracking +18</td></tr>
+    <tr><td>Podtytul w logo</td><td>Montserrat</td><td>300 Light</td><td>Uppercase, tracking +14</td></tr>
+    <tr><td>Naglowki materialow</td><td>Playfair Display</td><td>400 / 700</td><td>Uppercase lub Title Case</td></tr>
+    <tr><td>Tekst podstawowy</td><td>Montserrat</td><td>400 Regular</td><td>Sentence case</td></tr>
+    <tr><td>Tekst uzupelniajacy</td><td>Montserrat</td><td>300 Light</td><td>Uppercase, letter-spacing +4</td></tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 06 — INCORRECT USE -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="page page-dark">
+  <div class="section-num" style="color: rgba(212,168,83,0.1);">06</div>
+  <div class="section-title">Nieprawidlowe uzycie</div>
+  <div class="section-subtitle">Incorrect Usage</div>
+
+  <p>
+    Ponizej przedstawiono przyklady niedozwolonych modyfikacji znaku.
+    Logo powinno byc zawsze stosowane w oryginalnej formie.
+  </p>
+
+  <div class="dont-grid">
+    <div class="dont-card">
+      <div class="dont-box" style="background: #fff;">
+        <img src="arabesque_ballet_logo.svg" alt="" style="opacity: 0.3;">
+      </div>
+      <div class="dont-label" style="color: rgba(255,255,255,0.5);">Nie rozjasniaj / nie zmniejszaj kontrastu</div>
+    </div>
+    <div class="dont-card">
+      <div class="dont-box" style="background: #e74c3c;">
+        <img src="arabesque_ballet_logo.svg" alt="">
+      </div>
+      <div class="dont-label" style="color: rgba(255,255,255,0.5);">Nie umieszczaj na kolorowym tle</div>
+    </div>
+    <div class="dont-card">
+      <div class="dont-box" style="background: #0a0a0a;">
+        <img src="arabesque_ballet_logo.svg" alt="" style="transform: rotate(15deg);">
+      </div>
+      <div class="dont-label" style="color: rgba(255,255,255,0.5);">Nie obracaj znaku</div>
+    </div>
+    <div class="dont-card">
+      <div class="dont-box" style="background: #0a0a0a;">
+        <img src="arabesque_ballet_logo.svg" alt="" style="transform: scaleX(1.4);">
+      </div>
+      <div class="dont-label" style="color: rgba(255,255,255,0.5);">Nie rozciagaj / nie deformuj</div>
+    </div>
+    <div class="dont-card">
+      <div class="dont-box" style="background: #0a0a0a;">
+        <img src="arabesque_ballet_logo.svg" alt="" style="filter: drop-shadow(0 0 20px #d4a853);">
+      </div>
+      <div class="dont-label" style="color: rgba(255,255,255,0.5);">Nie dodawaj cieni / efektow</div>
+    </div>
+    <div class="dont-card">
+      <div class="dont-box" style="background: #0a0a0a;">
+        <img src="arabesque_ballet_logo.svg" alt="" style="filter: grayscale(100%);">
+      </div>
+      <div class="dont-label" style="color: rgba(255,255,255,0.5);">Nie usuwaj kolorow (chyba ze wersja mono)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 07 — APPLICATIONS -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-num">07</div>
+  <div class="section-title">Zastosowania</div>
+  <div class="section-subtitle">Applications</div>
+
+  <p class="lead">
+    Przykladowe zastosowania znaku w materialach marki.
+  </p>
+
+  <table>
+    <tr><th>Material</th><th>Specyfikacja</th></tr>
+    <tr><td>Wizytowka</td><td>90 x 50 mm, czarny papier 350g, zloty hot-stamping</td></tr>
+    <tr><td>Papier firmowy</td><td>A4, logo w lewym gornym rogu, maks. 40mm szer.</td></tr>
+    <tr><td>Program spektaklu</td><td>A5, okladka: logo wycentrowane, tlo #0A0A0A</td></tr>
+    <tr><td>Plakat</td><td>B1/B2, logo w dolnej 1/3, pole ochronne min. 10%</td></tr>
+    <tr><td>Social media — avatar</td><td>Sama sylwetka baleriny, bez tekstu, 400x400px</td></tr>
+    <tr><td>Social media — cover</td><td>Pelne logo, tlo #0A0A0A, 1500x500px</td></tr>
+    <tr><td>Strona www</td><td>Header: logo maks. 200px szer., na ciemnym tle</td></tr>
+    <tr><td>Merchandise</td><td>Koszulki: zlota sylwetka na czarnym materiale</td></tr>
+    <tr><td>Scenografia</td><td>Tkaniny: zloty haft lub nadruk na czarnym aksamicie</td></tr>
+  </table>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-diamond"></div>
+    <div class="divider-line"></div>
+  </div>
+
+  <h3 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 18px; margin-bottom: 16px;">Formaty plikow</h3>
+
+  <table>
+    <tr><th>Format</th><th>Zastosowanie</th><th>Plik</th></tr>
+    <tr><td>SVG</td><td>Web, digital, edycja</td><td>arabesque_ballet_logo.svg</td></tr>
+    <tr><td>PNG</td><td>Social media, prezentacje</td><td>Eksport z SVG, min. 2x</td></tr>
+    <tr><td>PDF</td><td>Druk, materialy firmowe</td><td>Konwersja z SVG, CMYK</td></tr>
+    <tr><td>EPS/AI</td><td>Drukarnia, hot-stamping</td><td>Konwersja z SVG, krzywe</td></tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 08 — TONE OF VOICE -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="page page-accent">
+  <div class="section-num">08</div>
+  <div class="section-title">Ton komunikacji</div>
+  <div class="section-subtitle">Tone of Voice</div>
+
+  <p class="lead">
+    Komunikacja marki ARABESQUE powinna odzwierciedlac wartosci klasycznego
+    baletu: elegancje, precyzje i artyzm.
+  </p>
+
+  <table>
+    <tr><th>Cecha</th><th>Tak</th><th>Nie</th></tr>
+    <tr><td>Elegancja</td><td>Wyrafinowany, spokojny jezyk</td><td>Potoczny slang, skroty</td></tr>
+    <tr><td>Precyzja</td><td>Konkretne, jasne komunikaty</td><td>Ogolniki, nadmiar przymiotnikow</td></tr>
+    <tr><td>Tradycja</td><td>Szacunek dla historii baletu</td><td>Lekcewazencie klasyki</td></tr>
+    <tr><td>Pasja</td><td>Emocjonalny, ale z klasa</td><td>Krzykliwy, agresywny marketing</td></tr>
+  </table>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-diamond"></div>
+    <div class="divider-line"></div>
+  </div>
+
+  <h3 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 18px; margin-bottom: 20px;">Slowa kluczowe marki</h3>
+  <p style="font-family: 'Playfair Display', serif; font-size: 22px; color: #c2a66e; line-height: 2.2; text-align: center;">
+    Gracja &middot; Elegancja &middot; Precyzja &middot; Tradycja &middot; Artyzm<br>
+    Doskonalosc &middot; Harmonia &middot; Pasja &middot; Piekno &middot; Wyraz
+  </p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="page-footer">
+  ARABESQUE BALLET COMPANY &middot; KSIEGA ZNAKU &middot; 2026<br><br>
+  <span style="font-size: 9px; letter-spacing: 2px; opacity: 0.5;">
+    Wszelkie prawa zastrzezone. Znak i elementy identyfikacji wizualnej sa chronione prawem autorskim.
+  </span>
+</div>
+
+</body>
+</html>
