@@ -3,91 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARABESQUE — Plakat Spektaklu</title>
+<title>ARABESQUE — Jezioro Łabędzie</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: #1a1a1a;
+    background: #111;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    padding: 40px;
+    padding: 30px;
   }
 
   .poster {
     width: 700px;
-    height: 990px; /* ~B2 proportions */
+    height: 1000px;
     background: #0a0a0a;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 20px 80px rgba(0,0,0,0.8);
+    box-shadow: 0 20px 80px rgba(0,0,0,0.9);
   }
 
-  /* Subtle radial glow behind ballerina */
+  /* Ambient glow */
   .poster::before {
     content: '';
     position: absolute;
-    top: 20%;
+    top: 15%;
     left: 50%;
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 600px;
     transform: translateX(-50%);
-    background: radial-gradient(ellipse, rgba(212,168,83,0.06) 0%, transparent 70%);
+    background: radial-gradient(ellipse, rgba(212,168,83,0.05) 0%, transparent 65%);
     pointer-events: none;
   }
 
-  /* Top decorative border */
-  .border-top {
-    position: absolute;
-    top: 24px;
-    left: 40px;
-    right: 40px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(212,168,83,0.3), transparent);
-  }
-  .border-bottom {
-    position: absolute;
-    bottom: 24px;
-    left: 40px;
-    right: 40px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(212,168,83,0.3), transparent);
-  }
-  .border-left {
-    position: absolute;
-    top: 40px;
-    bottom: 40px;
-    left: 24px;
-    width: 1px;
-    background: linear-gradient(180deg, transparent, rgba(212,168,83,0.3), transparent);
-  }
-  .border-right {
-    position: absolute;
-    top: 40px;
-    bottom: 40px;
-    right: 24px;
-    width: 1px;
-    background: linear-gradient(180deg, transparent, rgba(212,168,83,0.3), transparent);
-  }
+  /* Decorative frame */
+  .frame { position: absolute; }
+  .frame-top { top: 20px; left: 36px; right: 36px; height: 1px; background: linear-gradient(90deg, transparent, rgba(212,168,83,0.25), transparent); }
+  .frame-bottom { bottom: 20px; left: 36px; right: 36px; height: 1px; background: linear-gradient(90deg, transparent, rgba(212,168,83,0.25), transparent); }
+  .frame-left { top: 36px; bottom: 36px; left: 20px; width: 1px; background: linear-gradient(180deg, transparent, rgba(212,168,83,0.25), transparent); }
+  .frame-right { top: 36px; bottom: 36px; right: 20px; width: 1px; background: linear-gradient(180deg, transparent, rgba(212,168,83,0.25), transparent); }
 
-  /* Corner ornaments */
-  .corner {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-color: rgba(212,168,83,0.35);
-    border-style: solid;
-  }
-  .corner-tl { top: 20px; left: 20px; border-width: 1px 0 0 1px; }
-  .corner-tr { top: 20px; right: 20px; border-width: 1px 1px 0 0; }
-  .corner-bl { bottom: 20px; left: 20px; border-width: 0 0 1px 1px; }
-  .corner-br { bottom: 20px; right: 20px; border-width: 0 1px 1px 0; }
+  .corner { position: absolute; width: 18px; height: 18px; border-color: rgba(212,168,83,0.3); border-style: solid; }
+  .c-tl { top: 16px; left: 16px; border-width: 1px 0 0 1px; }
+  .c-tr { top: 16px; right: 16px; border-width: 1px 1px 0 0; }
+  .c-bl { bottom: 16px; left: 16px; border-width: 0 0 1px 1px; }
+  .c-br { bottom: 16px; right: 16px; border-width: 0 1px 1px 0; }
 
-  /* Content layout */
+  /* Layout */
   .content {
     position: relative;
     z-index: 1;
@@ -95,264 +61,372 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50px 60px;
+    padding: 44px 56px 36px;
   }
 
-  /* Presenter line */
+  /* Presenter */
   .presenter {
     font-family: 'Montserrat', sans-serif;
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 400;
-    letter-spacing: 6px;
+    letter-spacing: 5px;
     text-transform: uppercase;
-    color: rgba(194,166,110,0.45);
-    margin-bottom: 6px;
+    color: rgba(194,166,110,0.4);
+    margin-bottom: 4px;
   }
-
-  /* Company name */
   .company {
     font-family: 'Playfair Display', serif;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 400;
     letter-spacing: 10px;
     text-transform: uppercase;
     color: #c2a66e;
-    margin-bottom: 30px;
+    margin-bottom: 16px;
   }
 
-  /* Ballerina silhouette area */
-  .ballerina-area {
-    flex: 1;
+  /* Ballerina */
+  .ballerina-wrap {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    position: relative;
-    margin: 10px 0;
+    height: 310px;
+    margin: 4px 0 8px;
   }
-  .ballerina-area img {
-    height: 380px;
-    width: 380px;
+  .ballerina-wrap img {
+    height: 300px;
+    width: 300px;
     object-fit: contain;
-    filter: drop-shadow(0 0 60px rgba(212,168,83,0.08));
+    filter: drop-shadow(0 0 50px rgba(212,168,83,0.06));
   }
-
-  /* Spotlight effect under ballerina */
   .spotlight {
     position: absolute;
-    bottom: -20px;
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 300px;
-    height: 40px;
-    background: radial-gradient(ellipse, rgba(212,168,83,0.08) 0%, transparent 70%);
+    width: 260px;
+    height: 30px;
+    background: radial-gradient(ellipse, rgba(212,168,83,0.07) 0%, transparent 70%);
   }
 
-  /* Divider */
-  .divider {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin: 10px 0 24px;
-  }
-  .divider-line {
-    width: 80px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #d4a853, transparent);
-    opacity: 0.5;
-  }
-  .divider-diamond {
-    width: 6px;
-    height: 6px;
-    background: #d4a853;
-    transform: rotate(45deg);
-    opacity: 0.6;
-  }
+  /* Dividers */
+  .div-row { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+  .div-line { width: 70px; height: 1px; background: linear-gradient(90deg, transparent, rgba(212,168,83,0.45), transparent); }
+  .div-diamond { width: 5px; height: 5px; background: #d4a853; transform: rotate(45deg); opacity: 0.55; }
+  .div-wide .div-line { width: 100px; }
 
-  /* Show title */
-  .show-title {
+  /* Title */
+  .title-main {
     font-family: 'Playfair Display', serif;
-    font-size: 62px;
     font-weight: 400;
-    letter-spacing: 6px;
     color: #e8d08a;
     text-align: center;
-    line-height: 1.1;
-    margin-bottom: 4px;
-    text-shadow: 0 0 80px rgba(212,168,83,0.15);
+    line-height: 1.05;
+    text-shadow: 0 0 60px rgba(212,168,83,0.12);
   }
-  .show-title em {
-    font-style: italic;
-    font-size: 68px;
-  }
-
-  /* Subtitle */
-  .show-subtitle {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 300;
-    letter-spacing: 8px;
-    text-transform: uppercase;
-    color: rgba(194,166,110,0.5);
-    margin-bottom: 30px;
-  }
-
-  /* Info section */
-  .info-block {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  .info-date {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 400;
-    color: #d4a853;
-    letter-spacing: 3px;
-    margin-bottom: 4px;
-  }
-  .info-venue {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: rgba(194,166,110,0.6);
-    margin-bottom: 2px;
-  }
-  .info-detail {
+  .title-word1 { font-size: 64px; font-style: italic; letter-spacing: 4px; }
+  .title-word2 { font-size: 50px; letter-spacing: 8px; margin-bottom: 6px; }
+  .subtitle {
     font-family: 'Montserrat', sans-serif;
     font-size: 10px;
     font-weight: 300;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    color: rgba(194,166,110,0.45);
+    margin-bottom: 6px;
+  }
+  .composer {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    color: rgba(194,166,110,0.3);
+    margin-bottom: 14px;
+  }
+
+  /* Date block */
+  .date-block { text-align: center; margin-bottom: 10px; }
+  .date-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: #d4a853;
+    letter-spacing: 2px;
+  }
+  .date-days {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 300;
     letter-spacing: 3px;
-    color: rgba(194,166,110,0.35);
+    color: rgba(194,166,110,0.45);
+    margin-top: 2px;
+  }
+  .venue {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(194,166,110,0.55);
+    margin-top: 6px;
+  }
+  .venue-addr {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: rgba(194,166,110,0.3);
+    margin-top: 2px;
   }
 
-  /* Bottom divider */
-  .divider-bottom {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin: 16px 0;
-  }
-
-  /* Credits */
-  .credits {
+  /* Time & details row */
+  .details-row {
     display: flex;
     justify-content: center;
-    gap: 50px;
-    margin-bottom: 12px;
+    gap: 30px;
+    margin: 12px 0;
+    flex-wrap: wrap;
   }
-  .credit-item {
-    text-align: center;
-  }
-  .credit-role {
+  .detail-item { text-align: center; }
+  .detail-label {
     font-family: 'Montserrat', sans-serif;
     font-size: 7px;
-    font-weight: 400;
-    letter-spacing: 4px;
+    font-weight: 500;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    color: rgba(194,166,110,0.35);
-    margin-bottom: 3px;
+    color: rgba(194,166,110,0.3);
+    margin-bottom: 2px;
   }
-  .credit-name {
+  .detail-value {
     font-family: 'Playfair Display', serif;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
-    color: rgba(194,166,110,0.6);
+    color: rgba(194,166,110,0.65);
     letter-spacing: 1px;
   }
 
-  /* Ticket info */
-  .tickets {
+  /* Credits */
+  .credits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px 20px;
+    width: 100%;
+    max-width: 580px;
+    margin: 8px 0;
+  }
+  .credit { text-align: center; }
+  .credit-role {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 6.5px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(194,166,110,0.28);
+    margin-bottom: 2px;
+  }
+  .credit-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(194,166,110,0.5);
+  }
+
+  /* Age / info bar */
+  .info-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin: 10px 0 6px;
+    flex-wrap: wrap;
+  }
+  .info-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: rgba(194,166,110,0.4);
+    padding: 4px 12px;
+    border: 1px solid rgba(212,168,83,0.15);
+    border-radius: 2px;
+  }
+  .info-tag strong {
+    color: rgba(194,166,110,0.6);
+    font-weight: 500;
+  }
+
+  /* Tickets */
+  .tickets-block { text-align: center; margin: 8px 0 4px; }
+  .tickets-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 7px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(194,166,110,0.3);
+    margin-bottom: 3px;
+  }
+  .tickets-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #c2a66e;
+    letter-spacing: 2px;
+  }
+  .tickets-sub {
     font-family: 'Montserrat', sans-serif;
     font-size: 8px;
     font-weight: 300;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: rgba(194,166,110,0.3);
+    letter-spacing: 2px;
+    color: rgba(194,166,110,0.35);
+    margin-top: 3px;
+  }
+  .tickets-price {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: rgba(194,166,110,0.45);
+    margin-top: 4px;
   }
 
-  /* Logo at bottom */
-  .poster-logo {
-    width: 60px;
-    height: 60px;
+  /* Partners */
+  .partners {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 7px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(194,166,110,0.2);
     margin-top: auto;
-    opacity: 0.4;
   }
 </style>
 </head>
 <body>
 
 <div class="poster">
-  <!-- Decorative borders -->
-  <div class="border-top"></div>
-  <div class="border-bottom"></div>
-  <div class="border-left"></div>
-  <div class="border-right"></div>
-  <div class="corner corner-tl"></div>
-  <div class="corner corner-tr"></div>
-  <div class="corner corner-bl"></div>
-  <div class="corner corner-br"></div>
+  <div class="frame frame-top"></div>
+  <div class="frame frame-bottom"></div>
+  <div class="frame frame-left"></div>
+  <div class="frame frame-right"></div>
+  <div class="corner c-tl"></div>
+  <div class="corner c-tr"></div>
+  <div class="corner c-bl"></div>
+  <div class="corner c-br"></div>
 
   <div class="content">
-    <!-- Top -->
+
     <div class="presenter">Teatr Wielki — Opera Narodowa prezentuje</div>
     <div class="company">Arabesque Ballet Company</div>
 
-    <!-- Ballerina -->
-    <div class="ballerina-area">
-      <img src="arabesque_ballet_logo.svg" alt="Arabesque">
+    <div class="ballerina-wrap">
+      <img src="arabesque_ballet_logo.svg" alt="Arabesque Ballet Company">
       <div class="spotlight"></div>
     </div>
 
-    <!-- Divider -->
-    <div class="divider">
-      <div class="divider-line"></div>
-      <div class="divider-diamond"></div>
-      <div class="divider-line"></div>
+    <div class="div-row">
+      <div class="div-line"></div>
+      <div class="div-diamond"></div>
+      <div class="div-line"></div>
     </div>
 
-    <!-- Show title -->
-    <div class="show-title"><em>Jezioro</em></div>
-    <div class="show-title" style="font-size: 48px; margin-bottom: 6px;">Labedzie</div>
-    <div class="show-subtitle">Balet w czterech aktach</div>
+    <div class="title-main title-word1">Jezioro</div>
+    <div class="title-main title-word2">Łabędzie</div>
+    <div class="subtitle">Balet w czterech aktach</div>
+    <div class="composer">Muzyka: Piotr Iljicz Czajkowski &nbsp;&middot;&nbsp; Libretto: W. Begiczew &amp; W. Geltcer</div>
 
-    <!-- Date & venue -->
-    <div class="info-block">
-      <div class="info-date">15 — 22 Czerwca 2026</div>
-      <div class="info-venue">Teatr Wielki, Warszawa</div>
-      <div class="info-detail">Poczatek o godzinie 19:00 &nbsp;&middot;&nbsp; Czas trwania: 2h 45min z przerwa</div>
+    <div class="date-block">
+      <div class="date-main">15 — 22 Czerwca 2026</div>
+      <div class="date-days">Premiera: niedziela 15.06 &nbsp;|&nbsp; Kolejne spektakle: 17, 19, 21, 22.06</div>
+      <div class="venue">Teatr Wielki, Warszawa</div>
+      <div class="venue-addr">Plac Teatralny 1, 00-077 Warszawa &nbsp;&middot;&nbsp; Scena Główna (1070 miejsc)</div>
     </div>
 
-    <!-- Divider -->
-    <div class="divider-bottom">
-      <div class="divider-line"></div>
-      <div class="divider-diamond"></div>
-      <div class="divider-line"></div>
+    <div class="details-row">
+      <div class="detail-item">
+        <div class="detail-label">Początek</div>
+        <div class="detail-value">19:00</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Czas trwania</div>
+        <div class="detail-value">2h 45min</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Przerwa</div>
+        <div class="detail-value">2 × 15min</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Język</div>
+        <div class="detail-value">Balet / bez słów</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Grupa wiekowa</div>
+        <div class="detail-value">od 6 lat</div>
+      </div>
     </div>
 
-    <!-- Credits -->
-    <div class="credits">
-      <div class="credit-item">
+    <div class="div-row div-wide">
+      <div class="div-line"></div>
+      <div class="div-diamond"></div>
+      <div class="div-line"></div>
+    </div>
+
+    <div class="credits-grid">
+      <div class="credit">
         <div class="credit-role">Choreografia</div>
         <div class="credit-name">Maria Kowalska</div>
       </div>
-      <div class="credit-item">
-        <div class="credit-role">Muzyka</div>
-        <div class="credit-name">P. Czajkowski</div>
+      <div class="credit">
+        <div class="credit-role">Kierownictwo muz.</div>
+        <div class="credit-name">Krzysztof Urbański</div>
       </div>
-      <div class="credit-item">
+      <div class="credit">
         <div class="credit-role">Scenografia</div>
         <div class="credit-name">Jan Nowicki</div>
       </div>
-      <div class="credit-item">
-        <div class="credit-role">Pierwsze tancerki</div>
-        <div class="credit-name">A. Wisniewska &middot; K. Lewandowska</div>
+      <div class="credit">
+        <div class="credit-role">Kostiumy</div>
+        <div class="credit-name">Ewa Michnik</div>
+      </div>
+      <div class="credit">
+        <div class="credit-role">Odetta / Odyla</div>
+        <div class="credit-name">Anna Wiśniewska</div>
+      </div>
+      <div class="credit">
+        <div class="credit-role">Książę Zygfryd</div>
+        <div class="credit-name">Paweł Kowalczyk</div>
+      </div>
+      <div class="credit">
+        <div class="credit-role">Rotbart</div>
+        <div class="credit-name">Michał Krawczyk</div>
+      </div>
+      <div class="credit">
+        <div class="credit-role">Oświetlenie</div>
+        <div class="credit-name">Tomasz Zięba</div>
       </div>
     </div>
 
-    <!-- Tickets -->
-    <div class="tickets">Bilety: arabesque.pl &nbsp;&middot;&nbsp; +48 22 123 45 67</div>
+    <div class="info-bar">
+      <div class="info-tag"><strong>6+</strong> &nbsp;od 6 lat</div>
+      <div class="info-tag">Dostępne dla osób na wózkach</div>
+      <div class="info-tag">Pętla indukcyjna</div>
+      <div class="info-tag">Szatnia &amp; bufet</div>
+    </div>
+
+    <div class="tickets-block">
+      <div class="tickets-label">Bilety i rezerwacje</div>
+      <div class="tickets-main">arabesque.pl/bilety</div>
+      <div class="tickets-sub">Kasa teatru czynna: wt–sb 10:00–19:00, nd 12:00–18:00 &nbsp;&middot;&nbsp; Tel. +48 22 692 07 92</div>
+      <div class="tickets-price">Ceny biletów: 85 zł — 280 zł &nbsp;&middot;&nbsp; Zniżki: uczniowie, studenci, seniorzy –30%</div>
+    </div>
+
+    <div class="partners">
+      Partner główny: Ministerstwo Kultury i Dziedzictwa Narodowego &nbsp;&middot;&nbsp;
+      Patron medialny: TVP Kultura &nbsp;&middot;&nbsp;
+      Sponsor: PKO Bank Polski
+    </div>
+
   </div>
 </div>
 
