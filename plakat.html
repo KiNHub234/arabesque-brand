@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARABESQUE — Plakat Spektaklu</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px;
+  }
+
+  .poster {
+    width: 700px;
+    height: 990px; /* ~B2 proportions */
+    background: #0a0a0a;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.8);
+  }
+
+  /* Subtle radial glow behind ballerina */
+  .poster::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse, rgba(212,168,83,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Top decorative border */
+  .border-top {
+    position: absolute;
+    top: 24px;
+    left: 40px;
+    right: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212,168,83,0.3), transparent);
+  }
+  .border-bottom {
+    position: absolute;
+    bottom: 24px;
+    left: 40px;
+    right: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212,168,83,0.3), transparent);
+  }
+  .border-left {
+    position: absolute;
+    top: 40px;
+    bottom: 40px;
+    left: 24px;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(212,168,83,0.3), transparent);
+  }
+  .border-right {
+    position: absolute;
+    top: 40px;
+    bottom: 40px;
+    right: 24px;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(212,168,83,0.3), transparent);
+  }
+
+  /* Corner ornaments */
+  .corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: rgba(212,168,83,0.35);
+    border-style: solid;
+  }
+  .corner-tl { top: 20px; left: 20px; border-width: 1px 0 0 1px; }
+  .corner-tr { top: 20px; right: 20px; border-width: 1px 1px 0 0; }
+  .corner-bl { bottom: 20px; left: 20px; border-width: 0 0 1px 1px; }
+  .corner-br { bottom: 20px; right: 20px; border-width: 0 1px 1px 0; }
+
+  /* Content layout */
+  .content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 60px;
+  }
+
+  /* Presenter line */
+  .presenter {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: rgba(194,166,110,0.45);
+    margin-bottom: 6px;
+  }
+
+  /* Company name */
+  .company {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    color: #c2a66e;
+    margin-bottom: 30px;
+  }
+
+  /* Ballerina silhouette area */
+  .ballerina-area {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    margin: 10px 0;
+  }
+  .ballerina-area img {
+    height: 380px;
+    width: 380px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 60px rgba(212,168,83,0.08));
+  }
+
+  /* Spotlight effect under ballerina */
+  .spotlight {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 40px;
+    background: radial-gradient(ellipse, rgba(212,168,83,0.08) 0%, transparent 70%);
+  }
+
+  /* Divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 10px 0 24px;
+  }
+  .divider-line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #d4a853, transparent);
+    opacity: 0.5;
+  }
+  .divider-diamond {
+    width: 6px;
+    height: 6px;
+    background: #d4a853;
+    transform: rotate(45deg);
+    opacity: 0.6;
+  }
+
+  /* Show title */
+  .show-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 62px;
+    font-weight: 400;
+    letter-spacing: 6px;
+    color: #e8d08a;
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 4px;
+    text-shadow: 0 0 80px rgba(212,168,83,0.15);
+  }
+  .show-title em {
+    font-style: italic;
+    font-size: 68px;
+  }
+
+  /* Subtitle */
+  .show-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: rgba(194,166,110,0.5);
+    margin-bottom: 30px;
+  }
+
+  /* Info section */
+  .info-block {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .info-date {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: #d4a853;
+    letter-spacing: 3px;
+    margin-bottom: 4px;
+  }
+  .info-venue {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(194,166,110,0.6);
+    margin-bottom: 2px;
+  }
+  .info-detail {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    color: rgba(194,166,110,0.35);
+  }
+
+  /* Bottom divider */
+  .divider-bottom {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 16px 0;
+  }
+
+  /* Credits */
+  .credits {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 12px;
+  }
+  .credit-item {
+    text-align: center;
+  }
+  .credit-role {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 7px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(194,166,110,0.35);
+    margin-bottom: 3px;
+  }
+  .credit-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(194,166,110,0.6);
+    letter-spacing: 1px;
+  }
+
+  /* Ticket info */
+  .tickets {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    font-weight: 300;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(194,166,110,0.3);
+  }
+
+  /* Logo at bottom */
+  .poster-logo {
+    width: 60px;
+    height: 60px;
+    margin-top: auto;
+    opacity: 0.4;
+  }
+</style>
+</head>
+<body>
+
+<div class="poster">
+  <!-- Decorative borders -->
+  <div class="border-top"></div>
+  <div class="border-bottom"></div>
+  <div class="border-left"></div>
+  <div class="border-right"></div>
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <div class="content">
+    <!-- Top -->
+    <div class="presenter">Teatr Wielki — Opera Narodowa prezentuje</div>
+    <div class="company">Arabesque Ballet Company</div>
+
+    <!-- Ballerina -->
+    <div class="ballerina-area">
+      <img src="arabesque_ballet_logo.svg" alt="Arabesque">
+      <div class="spotlight"></div>
+    </div>
+
+    <!-- Divider -->
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- Show title -->
+    <div class="show-title"><em>Jezioro</em></div>
+    <div class="show-title" style="font-size: 48px; margin-bottom: 6px;">Labedzie</div>
+    <div class="show-subtitle">Balet w czterech aktach</div>
+
+    <!-- Date & venue -->
+    <div class="info-block">
+      <div class="info-date">15 — 22 Czerwca 2026</div>
+      <div class="info-venue">Teatr Wielki, Warszawa</div>
+      <div class="info-detail">Poczatek o godzinie 19:00 &nbsp;&middot;&nbsp; Czas trwania: 2h 45min z przerwa</div>
+    </div>
+
+    <!-- Divider -->
+    <div class="divider-bottom">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- Credits -->
+    <div class="credits">
+      <div class="credit-item">
+        <div class="credit-role">Choreografia</div>
+        <div class="credit-name">Maria Kowalska</div>
+      </div>
+      <div class="credit-item">
+        <div class="credit-role">Muzyka</div>
+        <div class="credit-name">P. Czajkowski</div>
+      </div>
+      <div class="credit-item">
+        <div class="credit-role">Scenografia</div>
+        <div class="credit-name">Jan Nowicki</div>
+      </div>
+      <div class="credit-item">
+        <div class="credit-role">Pierwsze tancerki</div>
+        <div class="credit-name">A. Wisniewska &middot; K. Lewandowska</div>
+      </div>
+    </div>
+
+    <!-- Tickets -->
+    <div class="tickets">Bilety: arabesque.pl &nbsp;&middot;&nbsp; +48 22 123 45 67</div>
+  </div>
+</div>
+
+</body>
+</html>
